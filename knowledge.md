@@ -7,6 +7,7 @@
     - With cloud computing, you don’t have to over-provision resources upfront to handle peak levels of business activity in the future. Instead, you provision the number of resources that you need. You can scale these resources up or down instantly to grow and shrink capacity as your business needs change.
 - Reliability
     - Refers to the ability of a system to recover from infrastructure or service disruptions, by dynamically acquiring computing resources to meet demand, and mitigate disruptions.
+    - Amazon VPC, AWS Trusted Advisor, AWS Service Quotas (formerly called AWS Service Limits).
 - Durability
     - Refers to the ability of a system to assure data is stored and data remains consistently on the system as long as it is not changed by legitimate access, i.e. data should not get corrupt or disappear from the cloud because of a system malfunction.
 - Resiliency
@@ -51,11 +52,36 @@ Is a physical location around the world where AWS clusters data centers.
 - Each AWS Region consists of multiple (two or more), isolated, and physically separate AZ's within a geographic area.
 - Each AZ has independent power, cooling, and physical security and is connected via redundant, ultra-low-latency networks.
 
-# Availability Zone
+## Availability Zone
 
 Is one or more discrete data centers with redundant power, networking, and connectivity in an AWS Region.
 
 - All AZ’s in an AWS Region are interconnected with high-bandwidth, low-latency networking, over fully redundant, dedicated metro fiber providing high-throughput, low-latency networking between AZ’s.
+
+## Global Scope
+
+Most of the services that AWS offers are Region specific. But few services, by definition, need to be in a global scope because of the underlying service they offer.
+
+- AWS IAM
+- Amazon CloudFront
+- Route 53
+- WAF
+
+## Cloud Computing types
+
+- Infrastructure as a Service (IaaS)
+    - IaaS contains the basic building blocks for cloud IT. It typically provides access to networking features, computers (virtual or on dedicated hardware), and data storage space.
+    - IaaS gives the highest level of flexibility and management control over IT resources.
+    - Examples - Amazon EC2 (on AWS), GCP, Azure, Rackspace, Digital Ocean, Linode.
+- Platform as a Service (PaaS)
+    - PaaS removes the need to manage underlying infrastructure (usually hardware and operating systems) and allows you to focus on the deployment and management of your applications.
+    - You don’t need to worry about resource procurement, capacity planning, software maintenance, patching, or any of the other undifferentiated heavy lifting involved in running your application.
+    - Examples - Elastic Beanstalk (on AWS), Heroku, Google App Engine (GCP), Windows Azure (Microsoft).
+- Software as a Service (SaaS)
+    - SaaS provides you with a complete product that is run and managed by the service provider.
+    - With a SaaS offering, you don’t have to think about how the service is maintained or how the underlying infrastructure is managed.
+    - You only need to think about how you will use that particular software.
+    - Examples - Amazon Rekognition, Google Apps (Gmail), Dropbox, Zoom.
 
 ---
 
@@ -147,6 +173,8 @@ The Simple Monthly Calculator provides an estimate of usage charges for AWS serv
 
 # VPC
 
+Amazon Virtual Private Cloud (Amazon VPC) lets you provision a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define. You have complete control over your virtual networking environment, including the selection of your IP address range, creation of subnets, and configuration of route tables and network gateways.
+
 ## AWS services that allow VPC Endpoint Gateway
 
 A VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
@@ -185,6 +213,13 @@ The AWS Trust & Safety team can assist you when AWS resources are used to engage
 ---
 
 # EC2
+
+## Amazon EC2 Instance Connect
+
+Amazon EC2 Instance Connect provides a simple and secure way to connect to your Linux instances using Secure Shell (SSH).
+
+- With EC2 Instance Connect, you use AWS Identity and Access Management (IAM) policies and principals to control SSH access to your instances, removing the need to share and manage SSH keys.
+- Instance Connect will need port 22 to be open for traffic.
 
 ## Storage
 
@@ -607,3 +642,217 @@ Is a digital catalog with thousands of software listings from independent softwa
 - Includes thousands of software listings from popular categories such as security, networking, storage, machine learning, IoT, business intelligence, database, and DevOps.
 - You can use AWS Marketplace as a buyer (subscriber) or as a seller (provider), or both.
 - Anyone with an AWS account can use AWS Marketplace as a consumer and can register to become a seller.
+
+---
+
+# AWS Storage Gateway
+
+AWS Storage Gateway is a hybrid cloud storage service that connects your existing on-premises environments with the AWS Cloud.
+
+- Customers use Storage Gateway to simplify storage management and reduce costs for key hybrid cloud storage use cases. These include moving tape backups to the cloud, reducing on-premises storage with cloud-backed file shares, providing low latency access to data in AWS for on-premises applications, as well as various migration, archiving, processing, and disaster recovery use cases.
+- AWS Storage Gateway service provides three different types of gateways
+    - Tape Gateway
+    - File Gateway
+    - Volume Gateway
+    - That seamlessly connect on-premises applications to cloud storage, caching data locally for low-latency access.
+
+---
+
+# Amazon CloudFront
+
+AWS Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely. Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.
+
+Amazon CloudFront is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency, high transfer speeds, all within a developer-friendly environment.
+
+---
+
+# Amazon Rekognition
+
+With Amazon Rekognition, you can identify objects, people, text, scenes, and activities in images and videos, as well as detect any inappropriate content.
+
+- Amazon Rekognition also provides highly accurate facial analysis and facial search capabilities that you can use to detect, analyze, and compare faces for a wide variety of user verification, people counting, and public safety use cases.
+- Features
+    - Content moderation
+    - Face compare and search
+    - Face detection and analysis
+    - Labels
+    - Custom labels
+    - Text detection
+    - Celebrity recognition
+    - Video segment detection
+    - Personal Protective Equipment (PPE) detection
+
+---
+
+# AWS Identity and Access Management (IAM)
+
+AWS Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely. Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.
+
+- IAM enables security best practices by allowing you to grant unique security credentials to users and groups to specify which AWS service APIs and resources they can access. These features make IAM an important service for the overall security of AWS resources in your account. IAM is secure by default; users have no access to AWS resources until permissions are explicitly granted.
+
+- IAM User
+    - Access keys are only tied to the IAM user
+    - Access keys are long-term credentials for an IAM user or the AWS account root user.
+    - You can use access keys to sign programmatic requests to the AWS CLI or AWS API (directly or using the AWS SDK).
+    - Access keys consist of two parts: an access key ID (for example, AKIAIOSFODNN7EXAMPLE) and a secret access key (for example, wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY).
+    - As a user name and password, you must use both the access key ID and secret access key together to authenticate your requests.
+- IAM Role
+    - An IAM role is similar to an IAM user, in that it is an AWS identity with permission policies that determine what the identity can and cannot do in AWS.
+    - However, instead of being uniquely associated with one person, a role is intended to be assumable by anyone who needs it.
+- IAM Group
+    - An IAM group is a collection of IAM users.
+    - Groups let you specify permissions for multiple users, which can make it easier to manage the permissions for those users.
+
+---
+
+# Amazon Elastic Container Registry (ECR)
+
+Amazon Elastic Container Registry (ECR) can be used to store, manage, and deploy Docker container images.
+
+- Eliminates the need to operate your container repositories.
+- You can then pull your docker images from ECR and run those on Amazon Elastic Container Service (ECS).
+
+---
+
+# Amazon Elastic Container Service (ECS)
+
+Amazon Elastic Container Service (Amazon ECS) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster.
+
+- You cannot use ECS to store and deploy docker container images.
+
+## Fargate launch type
+
+AWS Fargate is a serverless compute engine for containers. It works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS).
+
+- Fargate makes it easy for you to focus on building your applications.
+- Fargate removes the need to provision and manage servers, lets you specify and pay for resources per application, and improves security through application isolation by design.
+- Fargate allocates the right amount of compute, eliminating the need to choose instances and scale cluster capacity.
+- You only pay for the resources required to run your containers, so there is no over-provisioning and paying for additional servers.
+- Fargate runs each task or pod in its kernel providing the tasks and pods their own isolated compute environment. This enables your application to have workload isolation and improved security by design.
+
+---
+
+# AWS Service Health Dashboard
+
+AWS Service Health Dashboard publishes most up-to-the-minute information on the status and availability of all AWS services in tabular form for all Regions that AWS is present in.
+
+- You can check on this page https://status.aws.amazon.com/ to get current status information.
+
+---
+
+# AWS Personal Health Dashboard
+
+AWS Personal Health Dashboard provides alerts and remediation guidance when AWS is experiencing events that may impact you.
+
+- While the Service Health Dashboard displays the general status of AWS services, Personal Health Dashboard gives you a personalized view of the performance and availability of the AWS services underlying your AWS resources.
+
+---
+
+# AWS Systems Manager Session Manager
+
+AWS SSM Session Manager is a fully-managed service that provides you with an interactive browser-based shell and CLI experience. It helps provide secure and auditable instance management without the need to open inbound ports, maintain bastion hosts, and manage SSH keys.
+
+- Session Manager helps to enable compliance with corporate policies that require controlled access to instances, increase security and auditability of access to the instances while providing simplicity and cross-platform instance access to end-users.
+
+---
+
+# AWS Service Quotas
+
+Service Quotas enables you to view and manage your quotas for AWS services from a central location.
+
+- Quotas, also referred to as limits in AWS, are the maximum values for the resources, actions, and items in your AWS account.
+- Each AWS service defines its quotas and establishes default values for those quotas.
+
+---
+
+# AWS VPN
+
+AWS Virtual Private Network (VPN) solutions establish secure connections between on-premises networks, remote offices, client devices, and the AWS global network.
+
+- AWS VPN is comprised of two services: AWS Site-to-Site VPN and AWS Client VPN. Together, they deliver a highly-available, managed, and elastic cloud VPN solution to protect your network traffic.
+
+---
+
+# Amazon FSx for Windows File Server
+
+Amazon FSx for Windows File Server provides fully managed, highly reliable, and scalable file storage that is accessible over the industry-standard Service Message Block (SMB) protocol. It is built on Windows Server, delivering a wide range of administrative features such as user quotas, end-user file restore, and Microsoft Active Directory (AD) integration.
+
+- To support a wide spectrum of workloads, Amazon FSx provides high levels of throughput, IOPS and consistent sub-millisecond latencies.
+- Amazon FSx is accessible from Windows, Linux, and macOS compute instances and devices.
+- For Windows-based applications, Amazon FSx provides fully managed Windows file servers with features and performance optimized for "lift-and-shift" business-critical application workloads including home directories (user shares), media workflows, and ERP applications. It is accessible from Windows and Linux instances via the SMB protocol.
+
+---
+
+# Amazon FSx for Lustre
+
+For compute-intensive and fast processing workloads, like high-performance computing (HPC), machine learning, EDA, and media processing, Amazon FSx for Lustre, provides a file system that’s optimized for performance, with input and output stored on Amazon S3.
+
+- FSx for Lustre is only compatible with Linux.
+
+---
+
+# Global Accelerator
+
+AWS Global Accelerator is a service that improves the availability and performance of your applications with local or global users. It provides static IP addresses that act as a fixed entry point to your application endpoints in a single or multiple AWS Regions, such as your Application Load Balancers, Network Load Balancers, or Amazon EC2 instances. 
+
+- AWS Global Accelerator uses the AWS global network to optimize the path from your users to your applications, improving the performance of your traffic by as much as 60%.
+- Global Accelerator improves performance for a wide range of applications over TCP or UDP by proxying packets at the edge to applications running in one or more AWS Regions. 
+- Global Accelerator is a good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses or deterministic, fast regional failover.
+
+---
+
+# AWS Auto Scaling
+
+AWS Auto Scaling monitors applications and automatically adjusts capacity to maintain steady, predictable performance at the lowest possible cost.
+
+- Using AWS Auto Scaling, it’s easy to setup application scaling for multiple resources across multiple services in minutes.
+- The service provides a simple, powerful user interface that lets you build scaling plans for resources including Amazon EC2 instances and Spot Fleets, Amazon ECS tasks, Amazon DynamoDB tables and indexes, and Amazon Aurora Replicas.
+- AWS Auto Scaling makes scaling simple with recommendations that allow you to optimize performance, costs, or balance between them.
+
+---
+
+# AWS Local Zones
+
+AWS Local Zones allow you to use select AWS services, like compute and storage services, closer to more end-users, providing them very low latency access to the applications running locally.
+
+- AWS Local Zones are also connected to the parent region via Amazon’s redundant and very high bandwidth private network, giving applications running in AWS Local Zones fast, secure, and seamless access to the rest of AWS services.
+- You should use AWS Local Zones to deploy workloads closer to your end-users for low-latency requirements.
+- AWS Local Zones have their connection to the internet and support AWS Direct Connect, so resources created in the Local Zone can serve local end-users with very low-latency communications.
+- Various AWS services such as Amazon Elastic Compute Cloud (EC2), Amazon Virtual Private Cloud (VPC), Amazon Elastic Block Store (EBS), Amazon FSx, Amazon Elastic Load Balancing, Amazon EMR, Amazon ElastiCache, and Amazon Relational Database Service (RDS) are available locally in the AWS Local Zones. You can also use services that orchestrate or work with local services such as Amazon EC2 Auto Scaling, Amazon EKS clusters, Amazon ECS clusters, Amazon EC2 Systems Manager, Amazon CloudWatch, AWS CloudTrail, and AWS CloudFormation.
+- AWS Local Zones also provide a high-bandwidth, secure connection to the AWS Region, allowing you to seamlessly connect to the full range of services in the AWS Region through the same APIs and toolsets.
+
+---
+
+# AWS Wavelength
+
+AWS Wavelength extends the AWS cloud to a global network of 5G edge locations to enable developers to innovate and build a whole new class of applications that require ultra-low latency.
+
+- Wavelength Zones provide a high-bandwidth, secure connection to the parent AWS Region, allowing developers to seamlessly connect to the full range of services in the AWS Region through the same APIs and toolsets.
+
+---
+
+# AWS Batch
+
+You can use AWS Batch to plan, schedule and execute your batch computing workloads across the full range of AWS compute services.
+
+- AWS Batch dynamically provisions the optimal quantity and type of compute resources (e.g., CPU or memory optimized instances) based on the volume and specific resource requirements of the batch jobs submitted.
+- AWS Batch provisions compute resources and optimizes the job distribution based on the volume and resource requirements of the submitted batch jobs.
+
+---
+
+# Amazon MQ
+
+Amazon MQ is a managed message broker service for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers on AWS.
+
+- Amazon MQ reduces your operational responsibilities by managing the provisioning, setup, and maintenance of message brokers for you.
+- Because Amazon MQ connects to your current applications with industry-standard APIs and protocols, you can easily migrate to AWS without having to rewrite code.
+- If you're using messaging with existing applications, and want to move the messaging functionality to the cloud quickly and easily, AWS recommends you consider Amazon MQ. It supports industry-standard APIs and protocols so you can switch from any standards-based message broker to Amazon MQ without rewriting the messaging code in your applications. 
+- If you are building brand new applications in the cloud, AWS recommends you consider Amazon SQS and Amazon SNS.
+
+---
+
+# AWS Acceptable Use Policy
+
+The Acceptable Use Policy describes prohibited uses of the web services offered by Amazon Web Services, Inc. and its affiliates (the “Services”) and the website located at http://aws.amazon.com (the “AWS Site”).
+
+- This policy is present at https://aws.amazon.com/aup/ and is updated on a need basis by AWS.
